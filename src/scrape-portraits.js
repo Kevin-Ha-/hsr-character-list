@@ -5,42 +5,99 @@ const path = require('path')
 const http = require('http')
 const https = require('https')
 
-const starRailData = require('./data')
+const starRailData = require('./data.json')
 
-async function getHTML() {
-    const url = `https://genshin.gg/star-rail/character-stats`
+async function getHTML(url) {
     const { data } = await axios.get(url)
 
     const $ = cheerio.load(data)
     return $
 }
 
+/** @returns {characterData}  an array of objects containing relevant character info */
 async function getData() {
-    const $ = await getHTML()
+    const data = await Promise.all([
+        getCharacterData(),
+        getPathData()
+    ]).then(([charData, pathData]) => {
+        // data is sorted by 5 stars alphabetically, then 4 stars. Combine and return all alphabetically
+        const sortedCharData = charData.sort((a,b) => {
+            return a.name.localeCompare(b.name)
+        })
+
+        const combinedData = pathData.map((item, idx) => Object.assign({}, item, sortedCharData[idx]))
+        return combinedData
+    })
+
+    return data
+    
+}
+
+/**
+ * retrieve character data and return, path data is missing from this source
+ * @returns {Partial<characterData>}
+ */
+async function getCharacterData() {
+    const $ = await getHTML(`https://genshin.gg/star-rail/character-stats`)
 
     const nodeList = []
-    const nodes = $('.character-icon')
+    const nodes = $('.character-portrait')
 
     nodes.each((idx, el) => {
-        const fullImageSrc = $(el).attr('src').replace('Thumb', 'Full')
-        nodeList.push({name: $(el).attr('alt'), thumb_src: $(el).attr('src'), full_src: fullImageSrc})
+        const fullImageSrc = $(el).children('.character-icon').attr('src').replace('Thumb', 'Full')
+        nodeList.push({
+            name: $(el).children('.character-icon').attr('alt'),
+            thumb_src: $(el).children('.character-icon').attr('src'),
+            full_src: fullImageSrc,
+            rarity: $(el).children('.character-icon').attr('class').includes('rarity-5') ? 5 : 4,
+            element: $(el).children('.character-type').attr('alt'),
+            element_src: $(el).children('.character-type').attr('src').replace('_sm', '')
+        })
     })
-    
     return nodeList
 }
 
-function getDataFromFile(starRailData) {
-    console.log(starRailData)
+/**
+ * need a seperate scrape to get path data since genshin.gg does not have it
+ * @returns {Partial<characterData>}
+ */
+async function getPathData() {
+    const $ = await getHTML(`https://honkai-star-rail.fandom.com/wiki/Character/List`)
+
+    const nodeList = []
+    const nodeBody = $('.article-table tbody')[0]
+    const nodes = $(nodeBody).children()
+
+    nodes.each((idx, el) => {  
+        const nameRow = $(el).children('td')[0]
+        const pathRow = $(el).children('td')[2]
+
+        const cName = $(nameRow).children('a').attr('title')
+        const cPath = $(pathRow).children('.nowrap').find('a').attr('title')
+
+        nodeList.push({
+            name: cName,
+            character_path: cPath
+        })
+    })
+
+    return nodeList.slice(1) // remove the first element, its undefined
 }
 
+/**
+ * @param {characterData} data
+ */
 function writeToFile(data) {
     try {
-        fs.writeFileSync('./data.json', JSON.stringify(data))
+        fs.writeFileSync('./data.json', JSON.stringify(data), null, 2)
     } catch(e) {
         throw new Error(`failed to write to file: ${e}`)
     }
 }
 
+/**
+ * download images to images directory
+ */
 async function downloadImages() {
     const imagesDirectory = './images'
     if(!fs.existsSync(imagesDirectory)) { 
@@ -54,11 +111,17 @@ async function downloadImages() {
         const fileName = `${charData.name.replaceAll(' ', '_')}_portrait.png`
         const filePath = path.join(imagesDirectory, fileName)
         try {
-            await downloadImage(charData.src, filePath)
+            downloadImage(charData.src, filePath)
         } catch(e) { console.error(`error downloading: ${e}`)}
     }
 }
 
+/**
+ * 
+ * @param {string} src URL of image to download
+ * @param {string} destination src folder to download image to
+ * @returns {void}
+ */
 function downloadImage(src, destination) {
     return new Promise((resolve, reject) => {
         const fileStream = fs.createWriteStream(destination)
@@ -82,6 +145,4 @@ function downloadImage(src, destination) {
 
 // getData().then(result => {
     // writeToFile(result)
-    // getDataFromFile(starRailData)
-    // downloadImages()
 // }).catch(e => console.log(e))
