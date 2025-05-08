@@ -1,0 +1,4 @@
+.path-list--container {
+    display: flex;
+    min-width: 350px;
+}
