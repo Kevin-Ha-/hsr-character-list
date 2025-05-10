@@ -3,6 +3,13 @@
   font-family: sans-serif; 
 }
 
+html {
+  scrollbar-color: #c8c6ca hsla(224,20%,26%,1);
+  scrollbar-width: thin; 
+  background:url('../src/images/bg.webp') no-repeat fixed;
+  overflow-x: hidden;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -11,7 +18,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   margin: 0;
-  padding: 2em;
   display: grid;
   place-items: center;
   width: 100%;

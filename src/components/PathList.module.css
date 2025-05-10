@@ -1,0 +1,29 @@
+.pathListContainer {
+    display: flex;
+    min-width: 250px;
+}
+
+.pathList {
+    width: 250px;
+    position: fixed;
+    padding: 0;
+    margin-left: 2%;
+}
+
+.pathListItem {
+    list-style: none;
+    margin: 0 0 40px 5px;
+    display: flex;
+    align-items: anchor-center;
+
+    img {
+        width: 3.5em;
+        margin-right: 15px;
+    }
+}
+
+.pathListItemText {
+    font-size: 20px;
+    font-weight: bold;
+    color: #b6b7be;
+}

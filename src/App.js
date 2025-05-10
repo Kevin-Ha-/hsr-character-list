@@ -1,6 +1,7 @@
 import React from 'react';
 import Card from './components/Card'
 import PathList from './components/PathList'
+import NavBar from './components/NavBar';
 import characterData from './data.json'
 import styles from './App.module.css'
     
@@ -9,22 +10,27 @@ function App() {
   const characterCards = characterData.map((character) => {
     return (
       <Card
-        element={character.element}
-        rarity={character.rarity}
-        name={character.name}
-        src={require(`./images/characters/${character.name.replaceAll(' ', '_')}_portrait.png`)}
+        key={character.name}
+        character={character}
       />
     )
   })
 
   return (
-    <main className={styles.mainContainer}>      
-    
-      <PathList/>
-      <section className={styles.cardContainer}>
-        {characterCards}
-      </section>
-    </main>
+    <>
+      <main className={styles.mainContainer}>      
+          <NavBar />
+          <section className={styles.contentContainer}>
+            <PathList/>
+            <section className={styles.cardContainer}>
+              <section className={styles.cardInnerContainer}>
+                {characterCards}
+              </section>
+            </section>
+          </section>
+      </main>
+      <section className={styles.mainContainerFrame}></section>
+    </>
   );
 }
 
