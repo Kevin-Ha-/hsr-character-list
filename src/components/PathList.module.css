@@ -19,6 +19,7 @@
     img {
         width: 3.5em;
         margin-right: 15px;
+        filter: brightness(1.5) drop-shadow(1px 5px 7px black)
     }
 }
 
@@ -26,4 +27,21 @@
     font-size: 20px;
     font-weight: bold;
     color: #b6b7be;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.pathActiveState {
+    /* background-color: white;
+    border-radius: 50%;
+    z-index: -1;
+    width:4em; 
+    height:4em;
+    position: absolute;
+    margin: -3px; */
+
+    /* filter:invert(1) set on the img*/
+    /* color:white set on text */
 }

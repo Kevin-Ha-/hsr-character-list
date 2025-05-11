@@ -31,7 +31,7 @@ export default function(props) {
 
     return(
         <section className={styles.cardContainer}>
-            <article className={styles.cardContainerPortrait}>
+            <article className={`${styles.cardContainerPortrait} ${rarityClassName}`}>
                 <CharacterIcons />
                 <img className={styles.characterPortrait} src={require(`../images/characters/${props.character.name.replaceAll(' ', '_')}_portrait.png`)}/>
                 <CharacterFooterInfo />

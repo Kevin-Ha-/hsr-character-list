@@ -7,6 +7,9 @@
     width: 100%;
     display: flex;
     justify-content: center;
+    height:800px;
+    overflow:hidden;
+    mask-image:linear-gradient(180deg, rgba(0,0,0,1) 84%, rgba(0,0,0,.8) 84%, rgba(0,0,0,.6) 95%, rgba(0,0,0,0) 100%);
 }
 
 .cardInnerContainer {
@@ -15,9 +18,10 @@
     align-content: flex-start;
     width: 75vw;
     justify-content: flex-start;
-
-    height: 90vw;
+    height: 100%;
     overflow-y: scroll;
+    scrollbar-color: #c8c6ca hsla(224,20%,26%,1);
+    scrollbar-width: thin; 
 }
 
 .contentContainer {

@@ -4,10 +4,8 @@
 }
 
 html {
-  scrollbar-color: #c8c6ca hsla(224,20%,26%,1);
-  scrollbar-width: thin; 
   background:url('../src/images/bg.webp') no-repeat fixed;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 body {

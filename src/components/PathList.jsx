@@ -1,4 +1,5 @@
 import styles from './PathList.module.css'
+import { useState } from 'react'
 
 export default function() {
     const paths = ['Destruction', 'The Hunt', 'Erudition', 'Harmony', 'Nihility', 'Preservation', 'Abundance', 'Remembrance']
@@ -16,9 +17,14 @@ export default function() {
 
 function PathRow({path}) {
     return (
-        <li className={styles.pathListItem}>
+        <li className={styles.pathListItem} onClick={() => filterPath(path)}>
+            <div className={styles.pathActiveState}></div>
             <img src={require(`../images/paths/${path.replace(' ', '_')}_icon.png`)}/>
             <span className={styles.pathListItemText}>{path}</span>
         </li> 
     )
+}
+
+function filterPath(path) {
+    
 }
