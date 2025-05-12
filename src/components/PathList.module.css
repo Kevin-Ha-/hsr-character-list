@@ -16,10 +16,63 @@
     display: flex;
     align-items: anchor-center;
 
+    &:hover {
+        img {
+            background: rgb(64,69,83);
+            filter: brightness(1.5);
+            border-radius: 50%;
+            border: 2px solid white;
+            margin: -2px 13px -2px -2px;
+            width: calc(3.5em + 4px);       
+        }
+    }
+
+    &:active {
+        img {
+               border: 2px solid #c1912f;
+               background: black; 
+               border-radius: 50%;
+               
+            }
+
+        .pathListItemText {
+            color: #ffd06f;
+            
+            background-position: 100% 100%;
+            background-size: 100% 2px;
+            position:relative;
+
+            &::after {
+                content: '';
+                position: absolute;
+                right: 0;
+                bottom: 1px;
+                transform: translate(50%, 50%);
+                width: 4px;
+                height: 4px;
+                background-color: #ffd06f;
+                border-radius: 50%;
+                opacity: 1;
+            }
+
+            &::before {
+                content: " ";
+                position: absolute;
+                left: -6px;
+                bottom: 1px;
+                transform: translate(50%, 50%);
+                width: 4px;
+                height: 4px;
+                background-color: #ffd06f;
+                border-radius: 50%;
+            }
+        }
+    }
+
     img {
         width: 3.5em;
         margin-right: 15px;
-        filter: brightness(1.5) drop-shadow(1px 5px 7px black)
+        filter: brightness(1.5) drop-shadow(1px 5px 7px black);
     }
 }
 
@@ -28,8 +81,24 @@
     font-weight: bold;
     color: #b6b7be;
 
+    /* underline animation on click */
+    display: inline-block;
+    padding-bottom:2px;
+    background-image: linear-gradient(#c1912f 0 0);
+    background-position: 0 100%; 
+    background-size: 0% 2px;
+    background-repeat: no-repeat;
+    transition: background-size 0.5s, background-position 0s 0.5s;
+
+    &::after {
+        content: '';
+        transition: opacity 1s ease;
+        opacity:0;
+        
+    }
+
     &:hover {
-        cursor: pointer;
+        cursor:default;
     }
 }
 
