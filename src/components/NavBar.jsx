@@ -12,7 +12,10 @@ export default function() {
                 </div>
             </section>
             <section className={styles.navRightInfo}>
-                <p>Indexed</p>
+                <div className={styles.indexContainer}>
+                    <p className={styles.indexText}>Indexed</p><span className={styles.indexValue}>5/5</span>
+                </div>
+                <img className={styles.return} src={require(`../images/return_button.png`)}/>
             </section>
         </header>
     )

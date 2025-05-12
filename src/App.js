@@ -4,10 +4,20 @@ import PathList from './components/PathList'
 import NavBar from './components/NavBar';
 import characterData from './data.json'
 import styles from './App.module.css'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
     
 function App() {
   const [filteredCharacters, setFilteredCharacters] = useState(characterData)
+  const [shouldAnimate, setShouldAnimate] = useState(false)
+
+  useEffect(() => {
+      setShouldAnimate(true)
+      const timeout = setTimeout(() => {
+        setShouldAnimate(false)
+      }, 1000)
+      return() => clearTimeout(timeout)
+  }, [filteredCharacters])
+
 
   const characterCards = filteredCharacters.map((character) => {
     return (
@@ -31,7 +41,7 @@ function App() {
           <section className={styles.contentContainer}>
             <PathList pathListCallback={filterByPath}/>
             <section className={styles.cardContainer}>
-              <section className={styles.cardInnerContainer}>
+              <section className={`${styles.cardInnerContainer} ${shouldAnimate ? styles.fadeCards : ''}`}>
                 {characterCards}
               </section>
             </section>

@@ -39,4 +39,30 @@
 
 .navRightInfo {
     margin-left: auto;
+    display:flex;
+    padding: 2em;
+}
+
+.indexText {
+    font-size: 1.3em;
+    margin: 0;
+    color: white;
+}
+
+.indexValue {
+    font-size: 1.3em;
+    color: #e3c994;
+}
+
+.indexContainer {
+    display:flex;
+    gap: 5px;
+    padding-right: 3em;
+    align-items: end;
+}
+
+.return {
+    filter: invert(1);
+    width: 55px;
+    height: 40px;
 }

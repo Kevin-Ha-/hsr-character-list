@@ -19,9 +19,26 @@
     width: 75vw;
     justify-content: flex-start;
     height: 100%;
-    overflow-y: scroll;
+    overflow-y: auto;
     scrollbar-color: #c8c6ca hsla(224,20%,26%,1);
-    scrollbar-width: thin; 
+    scrollbar-width: thin;
+    opacity:1;
+    transition: opacity 1.5s ease-in-out;
+
+    &.fadeCards {
+        opacity: 0;
+        animation: fadeAnim 1s forwards;
+    }
+}
+
+@keyframes fadeAnim {
+    from {
+        opacity:0;
+    }
+
+    to {
+        opacity:1;
+    }
 }
 
 .contentContainer {
