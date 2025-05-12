@@ -32,7 +32,7 @@
                border: 2px solid #c1912f;
                background: black; 
                border-radius: 50%;
-               
+               filter:invert(1);
             }
 
         .pathListItemText {
@@ -104,6 +104,12 @@
 
 .pathActiveState {
   display:flex;
+
+  & img.pathImg {
+    background:black;
+    border-radius: 50%;
+    filter: invert(1);
+  }
 }
 
 /* .pathImg {

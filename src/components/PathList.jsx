@@ -1,18 +1,20 @@
 import styles from './PathList.module.css'
 import { useState } from 'react'
 
-export default function() {
+export default function(props) {
     const paths = ['Destruction', 'The Hunt', 'Erudition', 'Harmony', 'Nihility', 'Preservation', 'Abundance', 'Remembrance']
 
-    const [characterPath, setCharacterPath] = useState(paths[0])
+    const [characterPath, setCharacterPath] = useState(`All`)
 
     function filterPath(path) {
         setCharacterPath(path)
+        props.pathListCallback(path)
     }
 
     return(
         <section className={styles.pathListContainer}>
             <ul className={styles.pathList}>  
+                <PathRow key={`All`} path={`All`} filterPath={filterPath} characterPath={characterPath}/>
                 {paths.map((p) => {
                     return <PathRow key={p} path={p} filterPath={filterPath} characterPath={characterPath}/>
                 })}
@@ -41,14 +43,14 @@ function OrbitRing(props) {
     if(props.characterPath == props.path) {
         return(
             <>
-            <div className={styles.dotRing}>
-                {[...Array(amountOfDots).keys()].map(key => {
-                        let largeDotClassName = (key === 0 || key === 24) ? `${styles.largeDot}` : ''
+                <div className={styles.dotRing}>
+                    {[...Array(amountOfDots).keys()].map(key => {
+                            let largeDotClassName = (key === 0 || key === 24) ? `${styles.largeDot}` : ''
 
-                    return <span className={`${styles.dot} ${largeDotClassName}`} style={{ '--i': key }} key={key}></span>
-                    }
-                )}
-            </div>
+                        return <span className={`${styles.dot} ${largeDotClassName}`} style={{ '--i': key }} key={key}></span>
+                        }
+                    )}
+                </div>
             </>
         )
     }
