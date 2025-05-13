@@ -6,7 +6,7 @@ export default function(props) {
     function CharacterIcons() {
         return(
             <div className={styles.iconContainer}>
-                <img className={`${styles.characterElement} ${styles.characterIcon}`} src={require(`../images/elements/${props.character.element.toLowerCase()}.webp`)}/>
+                <img className={`${styles.characterElement} ${styles.characterIcon}`} src={require(`../images/elements/color/${props.character.element.toLowerCase()}.webp`)}/>
                 <img className={`${styles.characterPath} ${styles.characterIcon}`} src={require(`../images/paths/${props.character.character_path.replace(' ', '_')}_icon.png`)}/>
             </div>
         )
