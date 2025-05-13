@@ -1,0 +1,14 @@
+.filterListContainer {
+    display: flex;
+    min-width: 250px;
+}
+
+.filterList {
+    width: 250px;
+    position: fixed;
+    padding: 0;
+    margin-left: 2%;
+}
+
+
+
