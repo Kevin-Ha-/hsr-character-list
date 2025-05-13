@@ -1,4 +1,4 @@
-type characterData = {
+export type characterData = {
     name: string
     thumb_src: string
     full_src: string

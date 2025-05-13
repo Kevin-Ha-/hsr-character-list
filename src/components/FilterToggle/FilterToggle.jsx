@@ -9,8 +9,8 @@ function FilterToggle(props) {
                 <input type="checkbox" id="toggle-visible" onClick={() => props.toggleFilter()}/>
                 <label htmlFor="toggle-visible" className={styles.filterToggleLabel}>
                     <div className={styles.filterToggleButton}></div>
-                    <img src={require(`../images/paths/${props.currentPath.replace(' ', '_')}_icon.png`)} alt="Path Icon"/>
-                    <img src={require(`../images/elements/noColor/fire.png`)} alt="Element Icon"/>
+                    <img src={require(`../../assets/paths/${props.currentPath.replace(' ', '_')}_icon.png`)} alt="Path Icon"/>
+                    <img src={require(`../../assets/elements/noColor/fire.png`)} alt="Element Icon"/>
                 </label>
             </section>
         </>

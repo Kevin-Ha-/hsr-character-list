@@ -1,6 +1,6 @@
-import styles from '../components/FilterList.module.css'
+import styles from './FilterList.module.css'
 import { useState } from 'react'
-import FilterToggle from './FilterToggle'
+import FilterToggle from '../FilterToggle/FilterToggle'
 import PathList from './PathList'
 
 export default function(props) {

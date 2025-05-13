@@ -1,8 +1,8 @@
 import React from 'react';
-import Card from './components/Card'
-import FilterList from './components/FilterList'
-import NavBar from './components/NavBar'
-import characterData from './data.json'
+import Card from './components/Card/Card'
+import FilterList from './components/SideList/FilterList'
+import NavBar from './components/NavBar/NavBar'
+import characterData from './data/data.json'
 import styles from './App.module.css'
 import { useState, useEffect } from 'react'
     

@@ -5,7 +5,9 @@ const path = require('path')
 const http = require('http')
 const https = require('https')
 
-const starRailData = require('./data.json')
+import { characterData } from '../types/types'
+
+const starRailData = require('../data/data.json')
 
 async function getHTML(url) {
     const { data } = await axios.get(url)

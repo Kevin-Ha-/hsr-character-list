@@ -6,8 +6,8 @@ export default function(props) {
     function CharacterIcons() {
         return(
             <div className={styles.iconContainer}>
-                <img className={`${styles.characterElement} ${styles.characterIcon}`} src={require(`../images/elements/color/${props.character.element.toLowerCase()}.webp`)}/>
-                <img className={`${styles.characterPath} ${styles.characterIcon}`} src={require(`../images/paths/${props.character.character_path.replace(' ', '_')}_icon.png`)}/>
+                <img className={`${styles.characterElement} ${styles.characterIcon}`} src={require(`../../assets/elements/color/${props.character.element.toLowerCase()}.webp`)}/>
+                <img className={`${styles.characterPath} ${styles.characterIcon}`} src={require(`../../assets/paths/${props.character.character_path.replace(' ', '_')}_icon.png`)}/>
             </div>
         )
     }
@@ -19,7 +19,7 @@ export default function(props) {
                     <div className={styles.characterCardContent}>{props.character.name}</div>
                     <div className={styles.rarityIconContainer}>
                         {[...Array(props.character.rarity).keys()].map(key =>
-                            <img key={key} className={styles.characterRarityIcon} src={require(`../images/rarity_5.png`)}/>
+                            <img key={key} className={styles.characterRarityIcon} src={require(`../../assets/rarity_5.png`)}/>
                         )}
                         
                     </div>
@@ -33,7 +33,7 @@ export default function(props) {
         <section className={styles.cardContainer}>
             <article className={`${styles.cardContainerPortrait} ${rarityClassName}`}>
                 <CharacterIcons />
-                <img className={styles.characterPortrait} src={require(`../images/characters/${props.character.name.replaceAll(' ', '_')}_portrait.png`)}/>
+                <img className={styles.characterPortrait} src={require(`../../assets/characters/${props.character.name.replaceAll(' ', '_')}_portrait.png`)}/>
                 <CharacterFooterInfo />
             </article>   
         </section>

@@ -5,3 +5,10 @@
     - styling: apply underline on click rather than on active state
 - navbar stuff
 - fix character images, a bit too big
+- better font family
+- set toggle button to allow sorting between path or element
+    - ( element | path )
+    - change styling (background, invert colors on select, default color)
+    - setstates for which path/element is currently set, and the toggle between them
+    - element list menu
+        - use colored elements when selected
