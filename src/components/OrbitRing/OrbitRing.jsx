@@ -3,7 +3,9 @@ import styles from './OrbitRing.module.css'
 export default function(props) {
     const DOT_COUNT = 45
 
-    if(props.characterPath == props.path) {
+    if(props.characterPath == props.path && props.filterState == 'path' 
+    || props.characterElement == props.element && props.filterState == 'element'
+    || props.characterPath == 'all' && props.filterState == 'path') {
         return(
             <>
                 <div className={styles.dotRing}>

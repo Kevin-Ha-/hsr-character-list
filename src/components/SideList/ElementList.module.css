@@ -1,4 +1,4 @@
-.pathListItem {
+.elementListItem {
     list-style: none;
     margin: 0 0 30px 5px;
     display: flex;
@@ -11,16 +11,23 @@
             border-radius: 50%;
             border: 2px solid white;
             margin: -2px 13px -2px -2px;
-            width: calc(3.5em + 4px);       
+            width: calc(3.5em + 4px);      
+            height: 60px; 
+        }
+
+        .elementActiveState {
+
+            img {
+                height: 64px !important;
+            }
         }
     }
 
     &:active {
         img {
             border: 2px solid #c1912f;
-            background: black; 
             border-radius: 50%;
-            filter:invert(1);
+            height: 60px;
         }
     }
 
@@ -29,9 +36,18 @@
         margin-right: 15px;
         filter: brightness(1.5) drop-shadow(1px 5px 7px black);
     }
+
+    .elementActiveState {
+        display:flex;
+
+        img {
+            height: 60px;
+        }
+    }
+
 }
 
-.pathListItemText {
+.elementListItemText {
     font-size: 20px;
     font-weight: bold;
     color: #b6b7be;
@@ -45,7 +61,7 @@
     background-repeat: no-repeat;
     transition: background-size 0.2s, background-position 0s 0.2s;
 
-    &.pathUnderlineAnim {
+    &.elementUnderlineAnim {
 
         color: #ffd06f;    
         background-position: 100% 100%;
@@ -90,14 +106,3 @@
         cursor:default;
     }
 }
-
-.pathActiveState {
-  display:flex;
-
-  & img.pathImg {
-    background:black;
-    border-radius: 50%;
-    filter: invert(1);
-  }
-}
-

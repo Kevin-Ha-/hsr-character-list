@@ -29,8 +29,8 @@ function App() {
   })
 
 
-  const filterByPath = (pathVal) => {
-    const filtered = pathVal === 'All' ? characterData : characterData.filter(val => val.character_path === pathVal)
+  const filterBy = (type, val) => {
+    const filtered = val === 'All' ? characterData : characterData.filter(v => type == 'path' ? v.character_path === val : v.element === val)
     setFilteredCharacters(filtered)
   }
 
@@ -39,7 +39,7 @@ function App() {
       <main className={styles.mainContainer}>      
           <NavBar />
           <section className={styles.contentContainer}>
-            <FilterList pathListCallback={filterByPath}/>
+            <FilterList filterListCallback={filterBy}/>
             <section className={styles.cardContainer}>
               <section className={`${styles.cardInnerContainer} ${shouldAnimate ? styles.fadeCards : ''}`}>
                 {characterCards}
