@@ -5,9 +5,9 @@ const path = require('path')
 const http = require('http')
 const https = require('https')
 
-import { characterData } from '../types/types'
+import { characterData } from './../types/types'
 
-const starRailData = require('../data/data.json')
+const starRailData = require('./../data/data.json')
 
 async function getHTML(url) {
     const { data } = await axios.get(url)
@@ -49,11 +49,10 @@ async function getCharacterData() {
         const fullImageSrc = $(el).children('.character-icon').attr('src').replace('Thumb', 'Full')
         nodeList.push({
             name: $(el).children('.character-icon').attr('alt'),
-            thumb_src: $(el).children('.character-icon').attr('src'),
-            full_src: fullImageSrc,
             rarity: $(el).children('.character-icon').attr('class').includes('rarity-5') ? 5 : 4,
             element: $(el).children('.character-type').attr('alt'),
-            element_src: $(el).children('.character-type').attr('src').replace('_sm', '')
+            owned: !returnOwned(),
+            new: returnOwned()
         })
     })
     return nodeList
@@ -91,7 +90,7 @@ async function getPathData() {
  */
 function writeToFile(data) {
     try {
-        fs.writeFileSync('./data.json', JSON.stringify(data), null, 2)
+        fs.writeFileSync('./../data/data.json', JSON.stringify(data), null, 6)
     } catch(e) {
         throw new Error(`failed to write to file: ${e}`)
     }
@@ -145,6 +144,18 @@ function downloadImage(src, destination) {
     })
 }
 
-// getData().then(result => {
-    // writeToFile(result)
-// }).catch(e => console.log(e))
+/** for demonstration to new and owned character state, since I don't have access to that info*/
+function returnOwned() {
+    const val = Math.random() * 10
+    return val > 7.5
+}
+
+/** 
+ * to run:
+ * 1. navigate to src/helpers
+ * 2. node scrape-portraits.js
+ * 3. json file should be generated in src/data
+ */
+getData().then(result => {
+    writeToFile(result)
+}).catch(e => console.log(e))
