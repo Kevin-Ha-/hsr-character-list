@@ -13,7 +13,7 @@ export default function(props) {
             </section>
             <section className={styles.navRightInfo}>
                 <div className={styles.indexContainer}>
-                    <p className={styles.indexText}>Indexed</p><span className={styles.indexValue}> {props.count} / {props.count} </span>
+                    <p className={styles.indexText}>Indexed</p><span className={styles.indexValue}> {props.owned} / {props.count} </span>
                 </div>
                 <img className={styles.return} src={require(`../../assets/return_button.png`)}/>
             </section>

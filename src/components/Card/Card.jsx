@@ -21,7 +21,6 @@ export default function(props) {
                         {[...Array(props.character.rarity).keys()].map(key =>
                             <img key={key} className={styles.characterRarityIcon} src={require(`../../assets/rarity_5.png`)}/>
                         )}
-                        
                     </div>
                     <div className={styles.characterFooterFade}></div>
                 </footer>
@@ -29,11 +28,17 @@ export default function(props) {
         )
     }
 
+    const owned = props.character.owned
+    const newCharacter = props.character.new
+
+    const notOwnedClass = !owned ? styles.notOwned : ''
+
     return(
         <section className={styles.cardContainer}>
-            <article className={`${styles.cardContainerPortrait} ${rarityClassName}`}>
+            <article className={`${styles.cardContainerPortrait} ${rarityClassName} ${notOwnedClass}`}>
                 <CharacterIcons />
                 <img className={styles.characterPortrait} src={require(`../../assets/characters/${props.character.name.replaceAll(' ', '_')}_portrait.png`)}/>
+                {!owned ? <div className={styles.notIndexed}>Not Indexed</div> : ''}
                 <CharacterFooterInfo />
             </article>   
         </section>
