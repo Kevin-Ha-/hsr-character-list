@@ -10,6 +10,8 @@ function App() {
   const [filteredCharacters, setFilteredCharacters] = useState(characterData)
   const [shouldAnimate, setShouldAnimate] = useState(false)
 
+  const totalCharacterCount = characterData.length
+
   useEffect(() => {
       setShouldAnimate(true)
       const timeout = setTimeout(() => {
@@ -37,7 +39,7 @@ function App() {
   return (
     <>
       <main className={styles.mainContainer}>      
-          <NavBar />
+          <NavBar count={totalCharacterCount}/>
           <section className={styles.contentContainer}>
             <FilterList filterListCallback={filterBy}/>
             <section className={styles.cardContainer}>

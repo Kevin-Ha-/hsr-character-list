@@ -1,6 +1,13 @@
+@font-face {
+  font-family: 'hsr-font';
+  src: url('./assets/fonts/zh-cn.ttf');
+}
+
 * {
   box-sizing: border-box;
+  font-family: hsr-font;
   font-family: sans-serif; 
+  cursor: url('../src/assets/hsr_cursor.png'), auto !important;
 }
 
 html {

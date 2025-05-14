@@ -10,7 +10,7 @@ function FilterToggle(props) {
                 <label htmlFor="toggle-visible" className={styles.filterToggleLabel}>
                     <div className={styles.filterToggleButton}></div>
                     <img src={require(`../../assets/paths/${props.currentPath.replace(' ', '_')}_icon.png`)} alt="Path Icon"/>
-                    <img src={require(`../../assets/elements/noColor/fire.png`)} alt="Element Icon"/>
+                    <img src={require(`../../assets/elements/noColor/${props.currentElement.toLowerCase()}.png`)} alt="Element Icon"/>
                 </label>
             </section>
         </>

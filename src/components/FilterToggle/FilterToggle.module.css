@@ -1,5 +1,5 @@
  .filterToggleContainer {
-      width: 80px;  /* 60 + 60 + margins */
+      width: 80px;
       height: 40px;
       position: absolute;
       cursor: pointer;
@@ -7,50 +7,48 @@
       left: 25px;
     }
 
-    .filterToggleContainer input {
-      display: none;
-    }
+  .filterToggleContainer input {
+    display: none;
+  }
 
-    .filterToggleLabel {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-      height: 100%;
-      padding: 5px;
-      background-color: #eee;
-      border-radius: 40px;
-      box-sizing: border-box;
-      overflow: hidden;
-    }
+  .filterToggleLabel {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+    border:1px solid #e3c994;
+    background-color: transparent;
+    border-radius: 40px;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
 
-    .filterToggleLabel img {
-      width: 30px;
-      height: 30px;
-      z-index: 0;
-      pointer-events: none;
-    }
+  .filterToggleLabel img {
+    width: 30px;
+    height: 30px;
+    z-index: 0;
+    pointer-events: none;
+  }
 
-    .filterToggleButton {
-      position: absolute;
-      /* top: 5px;
-      left: 5px; */
-      width: 30px;
-      height: 30px;
-      background-color: rgba(255, 255, 255, 0.85);
-      border-radius: 50%;
-      box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-      transition: transform 0.3s ease;
-      z-index: 1;
-    }
+  .filterToggleButton {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-color: rgba(227, 201, 148, 0.5);
+    border: 1px solid white;
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.1s ease;
+    z-index: 1;
+  }
 
-    /* Move the knob to the right when checked */
-    .filterToggleContainer input:checked + .filterToggleLabel .filterToggleButton {
-      transform: translateX(40px);
-    }
+  .filterToggleContainer input:checked + .filterToggleLabel .filterToggleButton {
+    transform: translateX(37px);
+  }
 
-    /* Optional active background color */
-    .filterToggleContainer input:checked + .filterToggleLabel {
-      background-color: #d0f0d0;
-    }
+  .filterToggleContainer input:checked + .filterToggleLabel {
+    background-color: transparent;
+  }

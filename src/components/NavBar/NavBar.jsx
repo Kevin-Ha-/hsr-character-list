@@ -1,6 +1,6 @@
 import styles from './NavBar.module.css'
 
-export default function() {
+export default function(props) {
     return(
         <header className={styles.headerInfo}>
             <img className={styles.logo} src={require(`../../assets/logo.gif`)}/>
@@ -13,7 +13,7 @@ export default function() {
             </section>
             <section className={styles.navRightInfo}>
                 <div className={styles.indexContainer}>
-                    <p className={styles.indexText}>Indexed</p><span className={styles.indexValue}>5/5</span>
+                    <p className={styles.indexText}>Indexed</p><span className={styles.indexValue}> {props.count} / {props.count} </span>
                 </div>
                 <img className={styles.return} src={require(`../../assets/return_button.png`)}/>
             </section>
