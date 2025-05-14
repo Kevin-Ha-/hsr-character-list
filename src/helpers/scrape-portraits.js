@@ -1,11 +1,9 @@
-const axios = require('axios')
+const axios = require('axios').default
 const cheerio = require('cheerio')
 const fs = require('fs-js')
 const path = require('path')
 const http = require('http')
 const https = require('https')
-
-import { characterData } from './../types/types'
 
 const starRailData = require('./../data/data.json')
 
@@ -16,7 +14,7 @@ async function getHTML(url) {
     return $
 }
 
-/** @returns {characterData}  an array of objects containing relevant character info */
+/** @returns {Promise<CharacterData>} */
 async function getData() {
     const data = await Promise.all([
         getCharacterData(),
@@ -31,13 +29,13 @@ async function getData() {
         return combinedData
     })
 
+    // @ts-ignore
     return data
-    
 }
 
 /**
  * retrieve character data and return, path data is missing from this source
- * @returns {Partial<characterData>}
+ * @returns {Promise<Array<Partial<CharacterData>>>}
  */
 async function getCharacterData() {
     const $ = await getHTML(`https://genshin.gg/star-rail/character-stats`)
@@ -51,6 +49,7 @@ async function getCharacterData() {
             name: $(el).children('.character-icon').attr('alt'),
             rarity: $(el).children('.character-icon').attr('class').includes('rarity-5') ? 5 : 4,
             element: $(el).children('.character-type').attr('alt'),
+            full_src: fullImageSrc,
             owned: !returnOwned(),
             new: returnOwned()
         })
@@ -60,7 +59,7 @@ async function getCharacterData() {
 
 /**
  * need a seperate scrape to get path data since genshin.gg does not have it
- * @returns {Partial<characterData>}
+ * @returns {Promise<Array<Partial<CharacterData>>>}
  */
 async function getPathData() {
     const $ = await getHTML(`https://honkai-star-rail.fandom.com/wiki/Character/List`)
@@ -86,7 +85,7 @@ async function getPathData() {
 }
 
 /**
- * @param {characterData} data
+ * @param {CharacterData} data
  */
 function writeToFile(data) {
     try {
@@ -105,10 +104,10 @@ async function downloadImages() {
         fs.mkdirSync(imagesDirectory, { recursive: true })
     }
 
-    // maybe add seperate directory for thumbs and full size image?
+    // @ts-ignore
     const imageUrls = starRailData.map((v) => ({name: v.name, src: v.full_src}))
     
-    for(charData of imageUrls) {
+    for(let charData of imageUrls) {
         const fileName = `${charData.name.replaceAll(' ', '_')}_portrait.png`
         const filePath = path.join(imagesDirectory, fileName)
         try {
@@ -121,7 +120,7 @@ async function downloadImages() {
  * 
  * @param {string} src URL of image to download
  * @param {string} destination src folder to download image to
- * @returns {void}
+ * @returns {Promise}
  */
 function downloadImage(src, destination) {
     return new Promise((resolve, reject) => {

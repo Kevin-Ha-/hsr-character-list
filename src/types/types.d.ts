@@ -1,9 +1,9 @@
-export type characterData = {
+type CharacterData = {
     name: string
-    thumb_src: string
     full_src: string
     rarity: number
-    element: string
-    element_src: string
+    element: string    
     character_path: string
+    owned: boolean
+    new: boolean
   }

@@ -2,7 +2,7 @@ import styles from './FilterToggle.module.css'
 import { useState } from 'react'
 
 function FilterToggle(props) {
-    // console.log(props)
+
     return(
         <>
           <section className={styles.filterToggleContainer}>

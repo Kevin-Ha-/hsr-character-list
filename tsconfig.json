@@ -1,0 +1,19 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs":true,
+    "outDir": "./dist",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "lib" : [
+      "ES2021.String"
+    ]
+},
+  "files": [
+    "./src/helpers/scrape-portraits.js",
+  ],
+  "include": [
+    "./src/types/*.d.ts",
+  ]
+}
